@@ -14,6 +14,7 @@ var service = function($http, $timeout) {
     serviceInstance.popOnDelete = null;
     serviceInstance.company = null;
     serviceInstance.companies = [];
+    serviceInstance.searchRequestSumbitted = false;
 
     serviceInstance.getCompany = function(url, callback) {
         $http({

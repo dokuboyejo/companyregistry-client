@@ -37,7 +37,6 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
     $scope.deleteRequestSubmitted = false;
     $scope.deleteSuccessful = false;
     $scope.serviceUrl = CONSTANTS.url.path;
-
     $scope.initCompany = {
         "name": null,
         "address": null,
@@ -214,6 +213,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         companyService.getCompany(url, function(result) {
             $timeout(function() {
                 $scope.searchRequestSumbitted = true;
+                companyService.searchRequestSumbitted = $scope.searchRequestSumbitted;
                 if (result && result.data) {
                     if (idSearch) {
                         $scope.companies.push(result.data);

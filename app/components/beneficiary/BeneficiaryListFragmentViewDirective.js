@@ -10,7 +10,8 @@ var directive = function () {
         restrict: 'AE',
         scope: {
             beneficiaries: '=',
-            delref: '='
+            delref: '=',
+            searchRequestSumbitted: '='
         },
         controllerAs: 'ctrl',
         controller: 'BeneficiaryViewController'

@@ -20,7 +20,7 @@
               <label for="existingBeneficiaryId" class="validation-text" ng-show="beneficiarySearched && !beneficiaryFound">Beneficiary not found</label>
             </div>
           </div>
-          <beneficiary-list-fragment-view ng-show="searchRequestSumbitted" beneficiaries="beneficiaries" delref="'#/beneficiary/search/delete'"></beneficiary-list-fragment-view>
+          <beneficiary-list-fragment-view beneficiaries="beneficiaries" delref="'#/beneficiary/search/delete'" search-request-sumbitted="searchRequestSumbitted"></beneficiary-list-fragment-view>
         </form>
       </div>
     </div>
