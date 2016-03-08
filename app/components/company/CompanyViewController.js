@@ -36,7 +36,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
     $scope.updateRequestSubmitted = false;
     $scope.deleteRequestSubmitted = false;
     $scope.deleteSuccessful = false;
-    $scope.serviceUrl = CONSTANTS.url.host + ':' + CONSTANTS.url.port + '/' + CONSTANTS.url.contextRoot;
+    $scope.serviceUrl = CONSTANTS.url.path;
 
     $scope.initCompany = {
         "name": null,

@@ -2,9 +2,8 @@
 
 exports.constants = {
     url: {
-				host: 'http://localhost',
-				port: '8080',
-				contextRoot: 'companyregistry',
+				// path: 'http://localhost:8080/companyregistry',
+				path: 'https://companyregistry.herokuapp.com',
         companyContextPath: 'companies',
         beneficiaryContextPath: 'beneficiaries'
     }
