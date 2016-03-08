@@ -1,0 +1,10 @@
+{
+    "extends": "./.eslintrc",
+    "env": {
+        "jasmine": true,
+        "jquery": true
+    },
+    globals: {
+        'inject':false
+    }
+}

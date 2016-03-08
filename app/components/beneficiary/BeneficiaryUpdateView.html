@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12 col-lg-12">
+    <br/>
+    <div class="panel panel-default" ng-click="discardMessage($event)">
+      <div class="panel-heading">
+        <h2 class="panel-title">Update beneficiary</h2>
+      </div>
+      <div class="panel-body-form">
+        <div inform class="inform-fixed inform-shadow inform-animate" ng-show="updateRequestSubmitted || updateRequestAttempted"></div>
+        <form class="form-horizontal" id="beneficiaryDetailsForm" name="beneficiaryDetailsForm">
+          <beneficiary-detail-view beneficiary-details="beneficiary"></beneficiary-detail-view>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary pull-right" id="updateBeneficiary" ng-class="{'disabled': updateRequestSubmitted}" ng-click="updateBeneficiary($event)">Update</button>
+              <button type="submit" class="btn btn-secondary pull-right" ng-click="cancelOrCloseBeneficiaryUpdate()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

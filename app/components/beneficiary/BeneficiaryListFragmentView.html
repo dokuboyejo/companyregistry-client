@@ -1,0 +1,28 @@
+<legend>
+  <span>Results</span>
+</legend>
+<div class="responsive-table">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>First name</th>
+        <th class="text-right">Last name</th>
+        <th class="text-right"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="beneficiary in beneficiaries">
+        <td>{{beneficiary.id}}</td>
+        <td>{{beneficiary.firstName}}</td>
+        <td class="text-right">{{beneficiary.lastName}}</td>
+        <td class="text-right mutable-beneficiary clickable" id="beneficiary{{$index}}" ng-click="mutateBeneficiaryOptions(beneficiary, $index, $event)" type="button" data-container="body" data-toggle="popOnDelete" data-placement="right" data-html="true" data-content="<ul class='padding-left-5 clickable'><li><a href='#/beneficiary/update'>Edit</a></li><li><a href='{{delref}}' target='_self'>Delete</a></li></ul>">
+          <i class="fa fa-ellipsis-v text-primary"></i>
+        </td>
+      </tr>
+      <tr ng-show="beneficiaries.length === 0">
+        <td colspan="4" class="text-center">No registered beneficiary found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

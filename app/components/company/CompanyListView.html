@@ -1,0 +1,13 @@
+<div class="row" ng-init="fetchCompany()"> <!--block-ui="companyListBlock"-->
+  <div class="col-xs-12 col-lg-12">
+    <br/>
+    <div class="panel panel-default" ng-click="discardMessage($event)">
+      <div class="panel-heading">
+        <h2 class="panel-title">List of registered companies</h2>
+      </div>
+      <div class="panel-body-form">
+        <company-list-fragment-view companies="companies" delref="'#/company/list/delete'"></company-list-fragment-view>
+      </div>
+    </div>
+  </div>
+</div>

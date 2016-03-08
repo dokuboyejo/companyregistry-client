@@ -1,0 +1,35 @@
+<!-- side nav -->
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+  <div class="affix-top" id="sidebar-docs">
+    <div class="sidebar-wrapper">
+      <div class="panel-group nav" id="accordion">
+        <br>
+        <div class="panel panel-default">
+          <a href="javascript:;" class="list-group-item active" data-toggle="collapse" data-parent="#accordion" data-target="#collapseCompany" aria-controls="collapseCompany">Company</a>
+          <div id="collapseCompany" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="companyHeading">
+            <div class="panel-body">
+              <ul class="nav nav-stacked sidebar-subnav">
+                <li><a ui-sref="start.company">Create a new company</a></li>
+                <li><a ui-sref="start.company.search">Search for a company</a></li>
+                <li><a ui-sref="start.company.list">List all companies</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <a href="javascript:;" class="list-group-item collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapseBeneficiary" aria-controls="collapseBeneficiary">Beneficiary</a>
+          <div id="collapseBeneficiary" class="panel-collapse collapse" role="tabpanel" aria-labelledby="beneficiaryHeading">
+            <div class="panel-body">
+              <ul class="nav nav-stacked sidebar-subnav">
+                <li><a ui-sref="start.beneficiary">Create a new beneficiary</a></li>
+                <li><a ui-sref="start.beneficiary.search">Search for a beneficiary</a></li>
+                <li><a ui-sref="start.beneficiary.list">List all beneficiaries</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--/.sidebar-offcanvas-->

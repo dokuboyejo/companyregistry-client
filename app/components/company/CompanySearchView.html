@@ -1,0 +1,29 @@
+<div class="row" ng-init="resetCompany()"><!--block-ui="companySearchBlock"-->
+  <div class="col-xs-12 col-lg-12">
+    <br/>
+    <div class="panel panel-default" ng-click="discardMessage($event)">
+      <div class="panel-heading">
+        <h2 class="panel-title">Search for company</h2>
+      </div>
+      <div class="panel-body-form">
+        <div inform class="inform-fixed inform-shadow" ng-show="searchRequestSumbitted"></div>
+        <form class="form-horizontal" id="companyListForm" name="companyListForm">
+          <div class="form-group">
+            <label for="existingCompanyId" class="col-sm-4 control-label required">Existing company id</label>
+            <div class="col-sm-8">
+              <div class="input-group">
+                <input class="form-control" type="text" name="existingCompanyId" ng-model="search.companyId" ng-pattern="/^\d*$/" required>
+                <span class="input-group-addon clickable" id="searchExistingCompanyId" ng-click="searchCompany(search.companyId, $event)" data-toggle="popOnDelete" title="Invalid id" data-placement="top" data-content="company id must be a valid positive integer greater than zero">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+              <label for="existingCompanyId" class="validation-text" ng-show="(companyListForm.existingCompanyId.$error.required || companyListForm.existingCompanyId.$error.pattern) && !companyListForm.existingCompanyId.$pristine">Enter a valid numeric id</label>
+            </div>
+          </div>
+          <!-- <company-list-fragment-view ng-show="searchRequestSumbitted" companies="companies"></company-list-fragment-view> -->
+          <company-list-fragment-view ng-show="searchRequestSumbitted" companies="companies" delref="'#/company/search/delete'"></company-list-fragment-view>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

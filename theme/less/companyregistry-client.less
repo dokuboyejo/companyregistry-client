@@ -1,0 +1,70 @@
+@import "variables.less";
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+.blue-header {
+  color: @BlueColour;
+  display: inline-block;
+}
+
+.plus-icon {
+  width:40px;
+  height:40px;
+  background: red;
+  padding: 10px;
+  border-radius: 100%;
+  color: white;
+  text-align:center;
+}
+
+.remove-icon {
+  width:20px;
+  height:20px;
+  background: red;
+  padding: 2px;
+  border-radius: 100%;
+  color: white;
+  text-align:center;
+  cursor: pointer;
+}
+
+.clickable, .plus-icon {
+  cursor: pointer;
+}
+
+.control-label.required:after {
+	content: " *";
+	color: red;
+}
+
+.form-control.ng-dirty.ng-invalid {
+	border-color: red;
+}
+
+.padding-left-5 {
+    padding-left:5px;
+}
+
+.ng-cloak, .hidden {
+    display: none;
+}
+
+.alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: 0px;
+    color: inherit;
+}
+
+.modal-content, .modal-form {
+    width: 700px;
+}
+
+.modal-footer {
+    border-top: none;
+}

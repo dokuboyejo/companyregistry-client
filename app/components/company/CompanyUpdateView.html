@@ -1,0 +1,105 @@
+<div class="row" block-ui="companyUpdateBlock">
+  <div class="col-xs-12 col-lg-12">
+    <br/>
+    <div class="panel panel-default" ng-click="discardMessage($event)">
+      <div class="panel-heading">
+        <h2 class="panel-title">Update company</h2>
+      </div>
+      <div class="panel-body-form">
+        <div inform class="inform-fixed inform-shadow inform-animate" ng-show="updateRequestSubmitted"></div>
+        <form class="form-horizontal" id="companyUpdateForm" name="companyUpdateForm">
+          <legend>
+            <span>Company Detaiils</span>
+          </legend>
+          <div class="form-group">
+            <label for="name" class="col-sm-4 control-label required">Name</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="name" ng-model="company.name" required>
+              <label for="name" class="validation-text" ng-show="companyUpdateForm.name.$error.required && !companyUpdateForm.name.$pristine">Name of company must be provided</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-sm-4 control-label required">Address</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="address" ng-model="company.address" required>
+              <label for="address" class="validation-text" ng-show="companyUpdateForm.address.$error.required && !companyUpdateForm.address.$pristine">Company's address must be provided</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="city" class="col-sm-4 control-label required">City</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="city" ng-model="company.city" required>
+              <label for="city" class="validation-text" ng-show="companyUpdateForm.city.$error.required && !companyUpdateForm.city.$pristine">City in which company operates must be provided</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="country" class="col-sm-4 control-label required">Country</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="country" ng-model="company.country" required>
+              <label for="country" class="validation-text" ng-show="companyUpdateForm.country.$error.required && !companyUpdateForm.country.$pristine">Country in which company operates must be provided</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-4 control-label">Email</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" ng-model="company.email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber" class="col-sm-4 control-label">Phone number</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" ng-model="company.phoneNumber">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Beneficiary already exist</label>
+            <div class="col-sm-8">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="useExistingBeneficiary">
+                  <span class="cr">
+                    <i class="cr-icon fa fa-check check-square"></i>
+                  </span>
+                  Use existing beneficiary
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" ng-show="useExistingBeneficiary">
+            <label for="existingBeneficiaryId" class="col-sm-4 control-label">Existing beneficiary id</label>
+            <div class="col-sm-8">
+              <div class="input-group">
+                <input class="form-control" type="text" name="existingBeneficiaryId" ng-model="search.beneficiaryId" ng-pattern="/^\d*$/" ng-required="useExistingBeneficiary">
+                <span class="input-group-addon clickable" id="searchExistingBeneficiaryId" ng-click="searchBeneficiary(search.beneficiaryId, $event)" data-toggle="popOnDelete" title="Invalid id" data-placement="top" data-content="Beneficiary id must be a valid positive integer greater than zero">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+              <label for="existingBeneficiaryId" class="validation-text" ng-show="companyUpdateForm.existingBeneficiaryId.$error.required || companyUpdateForm.existingBeneficiaryId.$error.pattern && !companyUpdateForm.existingBeneficiaryId.$pristine">Enter a valid numeric id</label>
+              <label for="existingBeneficiaryId" class="validation-text" ng-show="beneficiarySearched && !beneficiaryFound">Beneficiary not found</label>
+            </div>
+          </div>
+
+          <div ng-repeat="bdata in company.beneficiaries" ng-show="!useExistingBeneficiary || minimumValidBeneficiary">
+            <beneficiary-detail-view beneficiary-details="bdata"></beneficiary-detail-view>
+            <span class='remove-icon pull-right' id="removeBeneficiary" ng-click="removeBeneficiary($event, bdata)" data-toggle="popOnDelete" title="Can't remove beneficiary" data-placement="top" data-content="Each company is required to have at least one beneficiary at any point in time">
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </div>
+
+          <div class='plus-icon' id="addBeneficiary" ng-click="addBeneficiary()" ng-show="!useExistingBeneficiary || minimumValidBeneficiary">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary pull-right" id="updateCompany" ng-class="{'disabled': updateRequestSubmitted}" ng-click="updateCompany($event)" data-toggle="popOnDelete" title="Can't update company" data-placement="top" data-content="Each company is required to have at least one valid beneficiary at any point in time">Update</button>
+              <button type="submit" class="btn btn-secondary pull-right" ng-click="cancelOrCloseCompanyUpdate()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

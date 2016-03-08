@@ -1,0 +1,13 @@
+<div class="row" ng-init="fetchBeneficiary()">
+  <div class="col-xs-12 col-lg-12">
+    <br/>
+    <div class="panel panel-default" ng-click="discardMessage($event)">
+      <div class="panel-heading">
+        <h2 class="panel-title">List of registered beneficiaries</h2>
+      </div>
+      <div class="panel-body-form">
+        <beneficiary-list-fragment-view beneficiaries="beneficiaries" delref="'#/beneficiary/list/delete'"></beneficiary-list-fragment-view>
+      </div>
+    </div>
+  </div>
+</div>

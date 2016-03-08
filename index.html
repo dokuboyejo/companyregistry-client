@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Registry</title>
+    <link rel='stylesheet' href='theme/a2o4/a2o4-bootstrap.min.css' type='text/css'>
+    <link rel='stylesheet' href='vendor/angular-inform/0.0.18/angular-inform.min.css' type='text/css'>
+    <link rel='stylesheet' href='dist/css/companyregistry-client.min.css' type='text/css'>
+
+    <!-- 3rd party libraries -->
+    <script src='vendor/jQuery/2.1.3/jquery-2.1.3.min.js' type='text/javascript'></script>
+    <script src='vendor/bootstrap/bootstrap.min.js' type='text/javascript'></script>
+    <script src='vendor/angular/1.4.7/angular.min.js' type='text/javascript'></script>
+    <script src='vendor/angular-bootstrap/0.11.2/ui-bootstrap-tpls-0.11.2.min.js' type='text/javascript'></script>
+    <script src='vendor/jasny-bootstrap/3.1.3/jasny-bootstrap.min.js' type='text/javascript'></script>
+    <script src='vendor/angular-inform/0.0.18/angular-inform.min.js' type='text/javascript'></script>
+
+    <script src='dist/js/companyregistry-client.min.js' type='text/javascript'></script>
+  </head>
+<body>
+  <!-- main top nav -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/">Company Registry</a>
+      </div>
+      <div aria-expanded="false" id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="./">Home  <span class="sr-only">(current)</span></a></li>
+          <li class="dropdown" id="company">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" id="companyMenu">
+              <li class="dropdown-header">Register companies</li>
+              <li><a href="#/company">Lodge a new company request</a></li>
+              <li><a href="#/company/list">Add more benefiaries to a company</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Retrieve company</li>
+              <li><a href="#/company/list">See all registered companies</a></li>
+              <li><a href="#/company/search">See details of a particular company</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Update company</li>
+              <li><a href="#/company/search">Update an existing company details</a></li>
+              <li><a href="#/company/search">Add existing beneficiaries to a particular company</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Delete company details</li>
+              <li><a href="#/company/search">Delete a particular company</a></li>
+              <li><a href="#/company/search">Remove a beneficiary from a particular company</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" id="beneficiary">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Beneficiary <span class="caret"></span></a>
+            <ul class="dropdown-menu" id="beneficiaryMenu">
+              <li class="dropdown-header">Register beneficiaries</li>
+              <li><a href="#/beneficiary" >Lodge a new beneficiary request</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Retrieve beneficiary</li>
+              <li><a href="#/beneficiary/list">See all registered beneficiaries</a></li>
+              <li><a href="#/beneficiary/search">See details of a particular beneficiary</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Update beneficiary</li>
+              <li><a href="#/beneficiary/search">Update an existing beneficiary details</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Delete beneficiary details</li>
+              <li><a href="#/beneficiary/search">Delete a particular beneficiary</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container">
+    <div id="companyregistry">
+      <side-nav-view></side-nav-view>
+      <div class="col-xs-12 col-sm-9" id="content">
+        <div ui-view="main"></div>
+        <!-- <company-form-view></company-form-view>
+        <company-search-view></company-search-view> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+    angular.element(document).ready(function() {
+      angular.bootstrap(document.getElementById('companyregistry'), ['com.companyregistry', 'ui.bootstrap']);
+    });
+
+</script>
+
+</html>
