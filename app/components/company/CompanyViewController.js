@@ -93,9 +93,9 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         var companyCreateBlock = blockUI.instances.get('companyCreateBlock');
         // companyCreateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
-        $scope.addRequestSubmitted = true;
         companyService.createCompany(url, $scope.company, function(result) {
             $timeout(function() {
+                $scope.addRequestSubmitted = true;
                 if (result && result.data) {
                     if (result.data.id > 0) {
                         inform.add('Company created successfully.', {
@@ -146,9 +146,9 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         // var companyUpdateBlock = blockUI.instances.get('companyUpdateBlock');
         // companyUpdateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
-        $scope.updateRequestSubmitted = true;
         companyService.updateCompany(url, $scope.company, function(result) {
             $timeout(function() {
+                $scope.updateRequestSubmitted = true;
                 if (result && result.data) {
                     if (result.data.status === true) {
                         inform.add('Company updated successfully.', {

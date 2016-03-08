@@ -72,10 +72,9 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
         var beneficiaryCreateBlock = blockUI.instances.get('beneficiaryCreateBlock');
         // beneficiaryCreateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath;
-        $scope.addRequestSubmitted = true;
         beneficiaryService.createBeneficiary(url, $scope.beneficiary, function(result) {
             $timeout(function() {
-                $log.info(result);
+                $scope.addRequestSubmitted = true;
                 if (result && result.data) {
                     if (result.data.id > 0) {
                         inform.add('beneficiary created successfully.', {
@@ -125,9 +124,9 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
         // var beneficiaryUpdateBlock = blockUI.instances.get('beneficiaryUpdateBlock');
         // beneficiaryUpdateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath;
-        $scope.updateRequestSubmitted = true;
         beneficiaryService.updateBeneficiary(url, $scope.beneficiary, function(result) {
             $timeout(function() {
+                $scope.updateRequestSubmitted = true;
                 if (result && result.data) {
                     if (result.data.status === true) {
                         inform.add('beneficiary updated successfully.', {
