@@ -10,8 +10,7 @@ var directive = function() {
         restrict: 'AE',
         scope: {
             companies: '=',
-            delref: '=',
-            searchRequestSumbitted: '='
+            delref: '='
         },
         controllerAs: 'ctrl',
         controller: 'CompanyViewController'

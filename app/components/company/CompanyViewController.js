@@ -51,7 +51,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         }]
     };
 
-    $scope.companies = companyService.companies.length > 0 ? companyService.companies : [];
+    $scope.companies = companyService.companies; //.length > 0 ? companyService.companies : [];
     $scope.company = companyService.company &&
                     ($state.current.name === 'start.company.update' || $state.current.name === 'start.company.list.delete' || $state.current.name === 'start.company.search.delete') ?
                     companyService.company : $scope.initCompany;
@@ -90,7 +90,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         }
 
         var companyCreateBlock = blockUI.instances.get('companyCreateBlock');
-        // companyCreateBlock.start();
+        companyCreateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
         companyService.createCompany(url, $scope.company, function(result) {
             $timeout(function() {
@@ -118,7 +118,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                         $scope.addRequestSubmitted = false;
                     }, 5000);
                 }
-                // companyCreateBlock.stop();
+                companyCreateBlock.stop();
             });
         });
     };
@@ -142,8 +142,8 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
             return;
         }
 
-        // var companyUpdateBlock = blockUI.instances.get('companyUpdateBlock');
-        // companyUpdateBlock.start();
+        var companyUpdateBlock = blockUI.instances.get('companyUpdateBlock');
+        companyUpdateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
         companyService.updateCompany(url, $scope.company, function(result) {
             $timeout(function() {
@@ -171,7 +171,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                         $scope.updateRequestSubmitted = false;
                     }, 5000);
                 }
-                // companyUpdateBlock.stop();
+                companyUpdateBlock.stop();
             });
         });
     };
@@ -183,8 +183,8 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
     $scope.deleteCompany = function($event) {
         $event.stopPropagation();
         $scope.company = companyService.company;
-        // var companyUpdateBlock = blockUI.instances.get('companyUpdateBlock');
-        // companyUpdateBlock.start();
+        var companyDeleteBlock = blockUI.instances.get('companyDeleteBlock');
+        companyDeleteBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath + '/' + $scope.company.id;
         companyService.deleteCompany(url, function(result) {
             $timeout(function() {
@@ -192,7 +192,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                 if (result && result.data && result.data.status === true) {
                     $scope.deleteSuccessful = true;
                 }
-                // companyUpdateBlock.stop();
+                companyDeleteBlock.stop();
             });
         });
     };
@@ -208,8 +208,8 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         var idSearch = !utilService.isBlank(id);
         var baseUrl = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
         var url = idSearch ? baseUrl + '/' + id : baseUrl;
-        //var companyListBlock = blockUI.instances.get('companyListBlock');
-        //companyListBlock.start();
+        var companyListBlock = blockUI.instances.get('companyListBlock');
+        companyListBlock.start();
         companyService.getCompany(url, function(result) {
             $timeout(function() {
                 $scope.searchRequestSumbitted = true;
@@ -223,7 +223,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                     companyService.companies = $scope.companies;
                     $scope.companyFound = true;
                 }
-                //companyListBlock.stop();
+                companyListBlock.stop();
             });
         });
     };
@@ -248,9 +248,9 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         }
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath + '/' + id;
 
-        var companySearchBlock = blockUI.instances.get('companySearchBlock');
-        companySearchBlock.start();
-        beneficiaryService.findBeneficiary(url, function(result) {
+        var companyCreateBlock = blockUI.instances.get('companyCreateBlock');
+        companyCreateBlock.start();
+        beneficiaryService.getBeneficiary(url, function(result) {
             $timeout(function() {
                 $scope.beneficiarySearched = true;
                 if (result && result.data) {
@@ -259,13 +259,23 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                     if (!$scope.minimumValidBeneficiary) {
                         $scope.company.beneficiaries.splice(0, $scope.company.beneficiaries.length);
                     }
-                    $scope.company.beneficiaries.push(result.data);
+                    if ($scope.company.beneficiaries.length > 0 ) {
+                        for (var i = 0; i < $scope.company.beneficiaries.length; i++) {
+                            if ($scope.company.beneficiaries[i].id != id) {
+                                $scope.company.beneficiaries.push(result.data);
+                                break;
+                            }
+                        }
+                    } else {
+                        $scope.company.beneficiaries.push(result.data);
+                    }
+                    // $scope.company.beneficiaries.indexOf(beneficiary) == -1 ? $scope.company.beneficiaries.push(result.data) : '';
                     $scope.disableBeneficiary(result.data.id);
                     $scope.minimumValidBeneficiary = true;
                     $scope.beneficiaryFound = true;
                     $scope.beneficiaryId = null;
                 }
-                companySearchBlock.stop();
+                companyCreateBlock.stop();
             });
         });
     };

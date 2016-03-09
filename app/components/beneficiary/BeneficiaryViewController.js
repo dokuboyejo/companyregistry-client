@@ -41,8 +41,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
         "firstName": null,
         "lastName": null
     };
-
-    $scope.beneficiaries = beneficiaryService.beneficiaries.length > 0 ? beneficiaryService.beneficiaries : [];
+    $scope.beneficiaries = beneficiaryService.beneficiaries; //.length > 0 ? beneficiaryService.beneficiaries : [];
     $scope.beneficiary = beneficiaryService.beneficiary &&
                          ($state.current.name === 'start.beneficiary.update' || $state.current.name === 'start.beneficiary.list.delete' || $state.current.name === 'start.beneficiary.search.delete') ?
                          beneficiaryService.beneficiary : $scope.initBeneficiary;
@@ -70,7 +69,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
         }
 
         var beneficiaryCreateBlock = blockUI.instances.get('beneficiaryCreateBlock');
-        // beneficiaryCreateBlock.start();
+        beneficiaryCreateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath;
         beneficiaryService.createBeneficiary(url, $scope.beneficiary, function(result) {
             $timeout(function() {
@@ -98,7 +97,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
                         $scope.addRequestSubmitted = false;
                     }, 5000);
                 }
-                // beneficiaryCreateBlock.stop();
+                beneficiaryCreateBlock.stop();
             });
         });
     };
@@ -121,8 +120,8 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
             return;
         }
 
-        // var beneficiaryUpdateBlock = blockUI.instances.get('beneficiaryUpdateBlock');
-        // beneficiaryUpdateBlock.start();
+        var beneficiaryUpdateBlock = blockUI.instances.get('beneficiaryUpdateBlock');
+        beneficiaryUpdateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath;
         beneficiaryService.updateBeneficiary(url, $scope.beneficiary, function(result) {
             $timeout(function() {
@@ -150,7 +149,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
                         $scope.updateRequestSubmitted = false;
                     }, 5000);
                 }
-                // beneficiaryUpdateBlock.stop();
+                beneficiaryUpdateBlock.stop();
             });
         });
     };
@@ -162,8 +161,8 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
     $scope.deleteBeneficiary = function($event) {
         $event.stopPropagation();
         $scope.beneficiary = beneficiaryService.beneficiary;
-        // var beneficiaryUpdateBlock = blockUI.instances.get('beneficiaryUpdateBlock');
-        // beneficiaryUpdateBlock.start();
+        var beneficiaryDeleteBlock = blockUI.instances.get('beneficiaryDeleteBlock');
+        beneficiaryDeleteBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath + '/' + $scope.beneficiary.id;
         beneficiaryService.deleteBeneficiary(url, function(result) {
             $timeout(function() {
@@ -173,7 +172,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
                 } else {
                   $log.info(result);
                 }
-                // beneficiaryUpdateBlock.stop();
+                beneficiaryDeleteBlock.stop();
             });
         });
     };
@@ -189,8 +188,8 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
         var idSearch = !utilService.isBlank(id);
         var baseUrl = $scope.serviceUrl + '/' + CONSTANTS.url.beneficiaryContextPath;
         var url = idSearch ? baseUrl + '/' + id : baseUrl;
-        //var beneficiaryListBlock = blockUI.instances.get('beneficiaryListBlock');
-        //beneficiaryListBlock.start();
+        var beneficiaryListBlock = blockUI.instances.get('beneficiaryListBlock');
+        beneficiaryListBlock.start();
         beneficiaryService.getBeneficiary(url, function(result) {
             $timeout(function() {
                 $scope.searchRequestSumbitted = true;
@@ -203,7 +202,7 @@ var controller = function($rootScope, $scope, $timeout, $window, $document, $log
                     beneficiaryService.beneficiaries = $scope.beneficiaries;
                     $scope.beneficiaryFound = true;
                 }
-                //beneficiaryListBlock.stop();
+                beneficiaryListBlock.stop();
             });
         });
     };

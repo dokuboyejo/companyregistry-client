@@ -51,9 +51,9 @@ var configBlock = {
      */
     blockUI: function(blockUIConfig) {
         blockUIConfig.delay = 100;
-        blockUIConfig.autoBlock = false;
+        // blockUIConfig.autoBlock = false;
         blockUIConfig.autoInjectBodyBlock = false;
-        blockUIConfig.template = '<div><img src="dist/images/ajax-loader.gif" /> Processing...</h1>';
+        blockUIConfig.template = '<div id="ui-overlay"><img src="dist/images/ajax-loader.gif" /></h1>';
     },
 
     /**
