@@ -21,7 +21,7 @@
             </div>
           </div>
           <!-- <company-list-fragment-view ng-show="searchRequestSumbitted" companies="companies"></company-list-fragment-view> -->
-          <company-list-fragment-view companies="companies" delref="'#/company/search/delete'" search-request-sumbitted="searchRequestSumbitted"></company-list-fragment-view>
+          <company-list-fragment-view companies="companies" delref="'#/company/search/delete'" ng-show="searchRequestSumbitted"></company-list-fragment-view>
         </form>
       </div>
     </div>
