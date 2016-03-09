@@ -18,8 +18,7 @@ var service = function($http, $timeout) {
     serviceInstance.getBeneficiary = function(url, callback) {
         $http({
             url: url,
-            method: 'GET',
-            dataType: 'jsonp'
+            method: 'GET'
         }).then(function(results) {
             callback(results);
         }, function(error) {
@@ -35,8 +34,7 @@ var service = function($http, $timeout) {
         $http({
             url: url,
             data: data,
-            method: 'POST',
-            dataType: 'jsonp'
+            method: 'POST'
         }).then(function(results) {
             callback(results);
         }, function(error) {
@@ -51,8 +49,7 @@ var service = function($http, $timeout) {
         $http({
             url: url,
             method: 'PUT',
-            data: data,
-            dataType: 'jsonp'
+            data: data
         }).then(function(results) {
             callback(results);
         }, function(error) {
@@ -67,8 +64,7 @@ var service = function($http, $timeout) {
     serviceInstance.deleteBeneficiary = function(url, callback) {
         $http({
             url: url,
-            method: 'DELETE',
-            dataType: 'jsonp'
+            method: 'DELETE'
         }).then(function(results) {
             callback(results);
         }, function(error) {

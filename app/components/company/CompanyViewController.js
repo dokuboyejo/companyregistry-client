@@ -83,7 +83,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                 $scope.registerPopoverShow('#addCompany');
                 return;
             }
-            $log.info('valid');
+            $log.info('form valid');
         } else {
             $log.warn('form invalid');
             return;
@@ -92,6 +92,7 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
         var companyCreateBlock = blockUI.instances.get('companyCreateBlock');
         companyCreateBlock.start();
         var url = $scope.serviceUrl + '/' + CONSTANTS.url.companyContextPath;
+
         companyService.createCompany(url, $scope.company, function(result) {
             $timeout(function() {
                 $scope.addRequestSubmitted = true;
@@ -269,7 +270,6 @@ var controller = function($rootScope, $scope, $q, $timeout, $window, $document, 
                     } else {
                         $scope.company.beneficiaries.push(result.data);
                     }
-                    // $scope.company.beneficiaries.indexOf(beneficiary) == -1 ? $scope.company.beneficiaries.push(result.data) : '';
                     $scope.disableBeneficiary(result.data.id);
                     $scope.minimumValidBeneficiary = true;
                     $scope.beneficiaryFound = true;

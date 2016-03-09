@@ -11,7 +11,6 @@ var service = function($window) {
     serviceInstance.isFormValid = function(formId) {
         var isValid = true;
         var formEl = $window.document.getElementById(formId);
-        console.log(formEl);
         if (!formEl || (formEl && formEl.className && formEl.className.indexOf('ng-invalid') > -1)) return false;
         // otherwise, perform sanity check
         var elements = $window.document.getElementById(formId).elements;

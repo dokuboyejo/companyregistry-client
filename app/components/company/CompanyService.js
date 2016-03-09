@@ -33,6 +33,8 @@ var service = function($http, $timeout) {
     };
 
     serviceInstance.createCompany = function(url, data, callback) {
+        console.log('here: ' + url);
+        //return;
         $http({
             url: url,
             data: data,
